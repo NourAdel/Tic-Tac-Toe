@@ -24,7 +24,7 @@ def print_board(board):
     print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
     print('------------')
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-
+    print('------------')
 
 def is_winner(board, letter):
     return (board[1] == letter and board[2] == letter and board[3] == letter) or (board[4] == letter and board[5] == letter and board[6] == letter) or (board[7] == letter and board[8] == letter and board[9] == letter) or (board[1] == letter and board[4] == letter and board[7] == letter) or (board[2] == letter and board[5] == letter and board[8] == letter) or (board[3] == letter and board[6] == letter and board[9] == letter) or (board[1] == letter and board[5] == letter and board[9] == letter) or (board[3] == letter and board[5] == letter and board[7] == letter)
@@ -33,7 +33,7 @@ def is_winner(board, letter):
 def player():
     run = True
     while run:
-        move = input(" please enter the desired position for x (From 1 to 9)")
+        move = input(" please enter the desired position for x (From 1 to 9) \n")
         try:
             move = int(move)
             if move > 0 and move < 10:
@@ -80,5 +80,131 @@ def computer():
     if len(edges) > 0:
         move = random.choice(edges)
         return move
+
+
+def run():
+    print_board(board)
+
+    while not (is_board_full(board)):
+        if not(is_winner(board, 'O')):
+            player()
+            print_board(board)
+        else:
+            print(" sorry, you lost.")
+            break
+
+        if not (is_winner(board, 'X')):
+            move = computer()
+            if move == 0:
+                print("TIE!")
+            else:
+                insert_letter("O", move)
+                print("computer played. \n")
+                print_board(board)
+
+        else:
+            print("you win!!")
+            break
+
+    if is_board_full(board) and not (is_winner(board, "X") and not (is_winner(board, 'O'))):
+      print("TIE!")
+
+
+while True:
+    x = input("Play again? y/n \n")
+    if x.lower() == 'y':
+        board = [' ']*10
+        print('------------------------------')
+        run()
+    else:
+        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
