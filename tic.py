@@ -1,4 +1,5 @@
 import random
+from IPython.display import clear_output
 
 board = [" "]*10
 
@@ -95,10 +96,12 @@ def run():
 
         if not (is_winner(board, 'X')):
             move = computer()
+            if move is None:
+                break
             if move == 0:
                 print("TIE!")
-            else:
-                insert_letter("O", move)
+            elif move:
+                insert_letter('O', move)
                 print("computer played. \n")
                 print_board(board)
 
@@ -106,18 +109,19 @@ def run():
             print("you win!!")
             break
 
-    if is_board_full(board) and not (is_winner(board, "X") and not (is_winner(board, 'O'))):
+    if is_board_full(board) :
       print("TIE!")
 
 
 while True:
-    x = input("Play again? y/n \n")
-    if x.lower() == 'y':
+        clear_output()
         board = [' ']*10
         print('------------------------------')
         run()
-    else:
-        break
+        x = input("press 'p' to play again, 'e' to exit. \n")
+        if x.lower() == 'e':
+            break
+
 
 
 
